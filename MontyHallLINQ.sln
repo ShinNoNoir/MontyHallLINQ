@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MontyHallLINQ", "MontyHallLINQ\MontyHallLINQ.csproj", "{EE4029CB-2CB8-4BBE-AA6D-800A6F61E130}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorSpace", "VectorSpace\VectorSpace.csproj", "{B46C54E6-1452-4F2F-8DB9-154AD7D2BC16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorSpace", "VectorSpace\VectorSpace.csproj", "{B46C54E6-1452-4F2F-8DB9-154AD7D2BC16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorSpace.Tests", "VectorSpace.Tests\VectorSpace.Tests.csproj", "{0EA1464C-AC75-4A3B-8353-48C908018509}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B46C54E6-1452-4F2F-8DB9-154AD7D2BC16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B46C54E6-1452-4F2F-8DB9-154AD7D2BC16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B46C54E6-1452-4F2F-8DB9-154AD7D2BC16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EA1464C-AC75-4A3B-8353-48C908018509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EA1464C-AC75-4A3B-8353-48C908018509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EA1464C-AC75-4A3B-8353-48C908018509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EA1464C-AC75-4A3B-8353-48C908018509}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
