@@ -116,7 +116,8 @@ namespace VectorSpace
             int hash = 0;
             foreach (var entry in bag)
             {
-                hash ^= entry.Key.GetHashCode() ^ entry.Value.GetHashCode();
+                if (entry.Value != 0.0)
+                    hash ^= entry.Key.GetHashCode() ^ entry.Value.GetHashCode();
             }
             return hash;
         }
