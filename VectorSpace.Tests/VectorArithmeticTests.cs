@@ -36,8 +36,9 @@ namespace VectorSpace.Tests
         }
 
 
-        public static IEnumerable<object> GetVectorData()
-            => new List<object>
+        public static IEnumerable<object> SampleVectors
+        { get; private set; } =
+            new List<object>
             {
                 new Vector<bool>(),
                 new Vector<bool>(false),
@@ -46,29 +47,29 @@ namespace VectorSpace.Tests
             };
 
         public static IEnumerable<object[]> GetVectorPairsData()
-            => from u in GetVectorData()
-               from v in GetVectorData()
+            => from u in SampleVectors
+               from v in SampleVectors
                select new object[] { u, v };
 
         public static IEnumerable<object[]> GetVectorTripletsData()
-            => from u in GetVectorData()
-               from v in GetVectorData()
-               from w in GetVectorData()
+            => from u in SampleVectors
+               from v in SampleVectors
+               from w in SampleVectors
                select new object[] { u, v, w };
 
-        public static IEnumerable<object> GetScalarData()
-            => new List<object> { 0.0, 1.0, -1.0, 5.0 };
+        public static IEnumerable<object> SampleScalars
+        { get; private set; } = new List<object> { 0.0, 1.0, -1.0, 5.0 };
 
         public static IEnumerable<object[]> GetScalarScalarVectorData()
-            => from a in GetScalarData()
-               from b in GetScalarData()
-               from v in GetVectorData()
+            => from a in SampleScalars
+               from b in SampleScalars
+               from v in SampleVectors
                select new object[] { a, b, v };
 
         public static IEnumerable<object[]> GetScalarVectorVectorData()
-            => from a in GetScalarData()
-               from u in GetVectorData()
-               from v in GetVectorData()
+            => from a in SampleScalars
+               from u in SampleVectors
+               from v in SampleVectors
                select new object[] { a, u, v };
     }
 }
