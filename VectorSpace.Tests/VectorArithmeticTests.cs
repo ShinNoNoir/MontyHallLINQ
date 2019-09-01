@@ -8,6 +8,14 @@ namespace VectorSpace.Tests
     public class VectorArithmeticTests
     {
         [Theory]
+        [MemberData(nameof(GetVectorData))]
+        public void ZeroTest<T>(Vector<T> v)
+        {
+            Assert.Equal(v + Vector<T>.Zero, v);
+            Assert.Equal(0 * v, Vector<T>.Zero);
+        }
+
+        [Theory]
         [MemberData(nameof(GetVectorPairsData))]
         public void CommutativeAdditionTest<T>(Vector<T> u, Vector<T> v)
         {
@@ -45,6 +53,10 @@ namespace VectorSpace.Tests
                 new Vector<bool>(true),
                 new Vector<bool>((1.0, false), (1.0, true))
             };
+
+        public static IEnumerable<object[]> GetVectorData()
+            => from v in SampleVectors
+               select new object[] { v };
 
         public static IEnumerable<object[]> GetVectorPairsData()
             => from u in SampleVectors

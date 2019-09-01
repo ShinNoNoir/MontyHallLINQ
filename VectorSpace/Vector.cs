@@ -18,6 +18,11 @@ namespace VectorSpace
     /// <typeparam name="Basis">The basis of the vector space.</typeparam>
     public class Vector<Basis>
     {
+        /// <summary>
+        /// The zero vector.
+        /// </summary>
+        public static Vector<Basis> Zero { get; private set; } = new Vector<Basis>();
+
         #region Constructors
         /// <summary>
         /// The backing datastructure for a vector.
