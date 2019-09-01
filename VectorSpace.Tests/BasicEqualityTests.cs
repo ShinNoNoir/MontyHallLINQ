@@ -11,6 +11,7 @@ namespace VectorSpace.Tests
         public void EqualityTest<T>(Vector<T> u, Vector<T> v)
         {
             Assert.Equal(u, v);
+            Assert.Equal(v, u);
         }
 
         [Theory]
@@ -25,6 +26,7 @@ namespace VectorSpace.Tests
             => new List<object[]>
             {
                 new object[]{ null, null },
+                new object[]{ new Vector<bool>(), Vector<bool>.Zero},
                 new object[]{ new Vector<bool>(true), new Vector<bool>(true) },
                 new object[]{ new Vector<bool>((0, false), (1.0, true)), new Vector<bool>(true) },
                 new object[]{ new Vector<bool>((1.0, false), (0.0, true)), new Vector<bool>(false) }

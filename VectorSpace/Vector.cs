@@ -19,9 +19,9 @@ namespace VectorSpace
     public class Vector<Basis>
     {
         /// <summary>
-        /// The zero vector.
+        /// The zero vector. Note that this vector is immutable.
         /// </summary>
-        public static Vector<Basis> Zero { get; private set; } = new Vector<Basis>();
+        public static Vector<Basis> Zero { get; private set; } = new ImmutableVector<Basis>();
 
         #region Constructors
         /// <summary>
@@ -66,7 +66,7 @@ namespace VectorSpace
         /// </summary>
         /// <param name="basis">A basis object.</param>
         /// <returns>The scalar component for a particular basis element.</returns>
-        public double this[Basis basis]
+        public virtual double this[Basis basis]
         {
             get { return bag.TryGetValue(basis, out double value) ? value : 0.0; }
             set { bag[basis] = value; }
@@ -87,7 +87,7 @@ namespace VectorSpace
         /// <param name="lhs">Left hand side.</param>
         /// <param name="rhs">Right hand side.</param>
         /// <returns>The sum of the two vectors.</returns>
-        public static Vector<Basis> operator+(Vector<Basis> lhs, Vector<Basis> rhs)
+        public static Vector<Basis> operator +(Vector<Basis> lhs, Vector<Basis> rhs)
         {
             var res = new Vector<Basis>();
             foreach (var basis in lhs.bag.Keys.Union(rhs.bag.Keys))
@@ -151,9 +151,6 @@ namespace VectorSpace
 
             if (Object.ReferenceEquals(this, other))
                 return true;
-
-            if (this.GetType() != other.GetType())
-                return false;
 
             var keys = new HashSet<Basis>(bag.Keys.Concat(other.bag.Keys));
             return keys.All(key => this[key] == other[key]);
