@@ -73,8 +73,55 @@ namespace VectorSpace
         /// <returns>String representation of a vector.</returns>
         public override string ToString()
             => $"{{{string.Join(", ", from entry in bag select $"{ entry.Key}: { entry.Value}")}}}";
-        
-                
+
+
+        #region Addition and scaling methods
+        /// <summary>
+        /// Adds two vectors together.
+        /// </summary>
+        /// <param name="lhs">Left hand side.</param>
+        /// <param name="rhs">Right hand side.</param>
+        /// <returns>The sum of the two vectors.</returns>
+        public static Vector<Basis> operator+(Vector<Basis> lhs, Vector<Basis> rhs)
+        {
+            var res = new Vector<Basis>();
+            foreach (var basis in lhs.bag.Keys.Union(rhs.bag.Keys))
+            {
+                res[basis] = lhs[basis] + rhs[basis];
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// Scales a vector with a scalar factor.
+        /// </summary>
+        /// <param name="factor">The scalar factor.</param>
+        /// <param name="vector">The vector to be scaled.</param>
+        /// <returns>A scaled vector.</returns>
+        public static Vector<Basis> operator *(double factor, Vector<Basis> vector)
+        {
+            var res = new Vector<Basis>();
+            foreach (var basis in vector.bag.Keys)
+            {
+                res[basis] = factor * vector[basis];
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// Subtracts from a vector another vector.
+        /// </summary>
+        /// <remarks>
+        /// Could be implemented more efficiently by mirroring the implementation
+        /// of addition, instead of combining addition and scaling.
+        /// </remarks>
+        /// <param name="lhs">Left hand side.</param>
+        /// <param name="rhs">Right hand side.</param>
+        /// <returns>The difference of the two vectors.</returns>
+        public static Vector<Basis> operator -(Vector<Basis> lhs, Vector<Basis> rhs)
+            => lhs + -1 * rhs;
+        #endregion
+
         #region Equality methods
         /// <summary>
         /// Determines whether two vector objects are equal. See <see cref="Equals(Vector{Basis})"/>.
