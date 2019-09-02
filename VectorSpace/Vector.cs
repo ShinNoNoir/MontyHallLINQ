@@ -55,7 +55,7 @@ namespace VectorSpace
         {
             foreach ((var scalar, var basis) in scalarBasisPairs)
             {
-                bag[basis] = scalar;
+                this[basis] += scalar;
             }
         }
         #endregion
