@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -191,5 +192,45 @@ namespace VectorSpace
         public static bool operator !=(Vector<Basis> lhs, Vector<Basis> rhs)
             => !(lhs == rhs);
         #endregion
+
+        
+        /// <summary>
+        /// Enumeration of this vector's components.
+        /// </summary>
+        public IEnumerable<VectorComponent<Basis>> Components
+        {
+            get => bag.Select(kv => new VectorComponent<Basis>(kv.Value, kv.Key));
+        }
+            
+        
+    }
+
+
+    /// <summary>
+    /// Provides a set of <code>static</code> methods for <see cref="Vector{Basis}"/> objects.
+    /// </summary>
+    public static class Vector
+    {
+        /// <summary>
+        /// Flattens a nested vector of vector objects.
+        /// </summary>
+        /// <remarks>
+        /// This particular function is also known as the monadic "join".
+        /// </remarks>
+        /// <typeparam name="T">The inner basis of the vector space.</typeparam>
+        /// <param name="vectorOfVectors">A nested vector of vector objects.</param>
+        /// <returns>A flattened vector.</returns>
+        public static Vector<T> Flatten<T>(this Vector<Vector<T>> vectorOfVectors)
+        {
+            var res = new Vector<T>();
+            foreach (var scalarVector in vectorOfVectors.Components)
+            {
+                foreach (var scalarObject in scalarVector.Object.Components)
+                {
+                    res[scalarObject.Object] += scalarVector.Scalar * scalarObject.Scalar;
+                }
+            }
+            return res;
+        }
     }
 }

@@ -44,6 +44,28 @@ namespace VectorSpace.Tests
         }
 
 
+        [Theory]
+        [MemberData(nameof(GetVectorPairsData))]
+        public void AdditionViaFlattenTest<T>(Vector<T> u, Vector<T> v)
+        {
+            Assert.Equal(
+                u + v,
+                new Vector<Vector<T>>((1, u), (1, v)).Flatten()
+            );
+        }
+
+        [Theory]
+        [MemberData(nameof(GetScalarVectorData))]
+        public void ScalingViaFlattenTest<T>(double a, Vector<T> v)
+        {
+            Assert.Equal(
+                a * v,
+                new Vector<Vector<T>>((a, v)).Flatten()
+            );
+        }
+
+
+
         public static IEnumerable<object> SampleVectors
         { get; private set; } =
             new List<object>
@@ -71,6 +93,11 @@ namespace VectorSpace.Tests
 
         public static IEnumerable<object> SampleScalars
         { get; private set; } = new List<object> { 0.0, 1.0, -1.0, 5.0 };
+
+        public static IEnumerable<object[]> GetScalarVectorData()
+            => from a in SampleScalars
+               from v in SampleVectors
+               select new object[] { a, v };
 
         public static IEnumerable<object[]> GetScalarScalarVectorData()
             => from a in SampleScalars
