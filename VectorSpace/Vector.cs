@@ -201,8 +201,23 @@ namespace VectorSpace
         {
             get => bag.Select(kv => new VectorComponent<Basis>(kv.Value, kv.Key));
         }
-            
-        
+
+        /// <summary>
+        /// Projects each basis object of this vector into a new form.
+        /// </summary>
+        /// <typeparam name="B2">The basis object type of the value returned by the <paramref name="selector"/>.</typeparam>
+        /// <param name="selector">A transform function to apply to each basis object.</param>
+        /// <returns>A <see cref="Vector{Basis}"/> whose basis objects are the result of invoking the transform function on each original basis object.</returns>
+        public Vector<B2> Select<B2>(Func<Basis,B2> selector)
+        {
+            var res = new Vector<B2>();
+            foreach (var scalarObject in Components)
+            {
+                var obj2 = selector(scalarObject.Object);
+                res[obj2] += scalarObject.Scalar;
+            }
+            return res;
+        }
     }
 
 
