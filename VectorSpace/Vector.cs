@@ -218,6 +218,36 @@ namespace VectorSpace
             }
             return res;
         }
+
+        /// <summary>
+        /// Projects each basis object of this vector to a <see cref="Vector{Basis}"/> 
+        /// and flattens the resulting nested vector into an unnested vector.
+        /// That is, it lifts a function, which maps a basis vector to another vector,
+        /// to a linear function from vectors to vectors and applies this linear function
+        /// to this vector.
+        /// </summary>
+        /// <typeparam name="B2">The basis object type of the vector returned by the <paramref name="selector"/>.</typeparam>
+        /// <param name="selector">A transform function to apply to each basis object.</param>
+        /// <returns>A <see cref="Vector{Basis}"/> which is the result of the lifted <paramref name="selector"/> function.</returns>
+        public Vector<B2> SelectMany<B2>(Func<Basis, Vector<B2>> selector)
+            => Select(selector).Flatten();
+
+        /// <summary>
+        /// Projects each basis object of this vector to a <see cref="Vector{Basis}"/> 
+        /// and flattens the resulting nested vector into an unnested vector.
+        /// It differs from <see cref="SelectMany{B2}(Func{Basis, Vector{B2}})"/>
+        /// in that it uses two functions for projecting each basis object.
+        /// </summary>
+        /// <typeparam name="B2">The type of the intermedia vector produced by <paramref name="vectorSelector"/>.</typeparam>
+        /// <typeparam name="B3">The basis object type of value returned by the <paramref name="resultSelector"/>.</typeparam>
+        /// <param name="vectorSelector">A transform function to apply to each basis object for creating an intermediate vector.</param>
+        /// <param name="resultSelector">A transform function to apply to each basis object in the intermedia vector.</param>
+        /// <returns>
+        /// A <see cref="Vector{Basis}"/> which is the result of lifting the combination of <paramref name="vectorSelector"/> 
+        /// and <paramref name="resultSelector"/> function.
+        /// </returns>
+        public Vector<B3> SelectMany<B2, B3>(Func<Basis, Vector<B2>> vectorSelector, Func<Basis, B2, B3> resultSelector)
+            => SelectMany(basis => vectorSelector(basis).Select(basis2 => resultSelector(basis, basis2)));
     }
 
 
