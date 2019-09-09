@@ -203,6 +203,21 @@ namespace VectorSpace
         }
 
         /// <summary>
+        /// Computes the <paramref name="p"/>-norm.
+        /// 
+        /// For <paramref name="p"/> = 1, this computes the Manhattan distance from 0 to this vector.
+        /// For <paramref name="2"/> = 1, this computes the Euclidean length of this vector.
+        /// </summary>
+        /// <param name="p">Which norm to compute.</param>
+        /// <returns>The <paramref name="p"/>-norm of this vector.</returns>
+        public double Norm(int p = 2)
+            => p >= 1
+            ? Math.Pow(
+                Components.Aggregate(0.0, (acc, component) => acc + Math.Pow(component.Scalar, p)), 
+                1.0 / p)
+            : throw new ArgumentException("The p-norm is only defined for positive values of p");
+
+        /// <summary>
         /// Projects each basis object of this vector into a new form.
         /// </summary>
         /// <typeparam name="B2">The basis object type of the value returned by the <paramref name="selector"/>.</typeparam>
