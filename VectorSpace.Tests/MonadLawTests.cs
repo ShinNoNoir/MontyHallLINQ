@@ -48,6 +48,28 @@ namespace VectorSpace.Tests
         }
 
 
+        [Theory]
+        [MemberData(nameof(GetRandomVectorData))]
+        public void WhereIdentityTest<T>(Vector<T> v)
+        {
+            Assert.Equal(
+                v.Where(x => true),
+                v
+            );
+        }
+
+        [Theory]
+        [MemberData(nameof(GetRandomVectorData))]
+        public void WhereZeroTest<T>(Vector<T> v)
+        {
+            Assert.Equal(
+                v.Where(x => false),
+                Vector<T>.Zero
+            );
+        }
+
+
+
         private static Random Rand = new Random();
         public static bool GetRandomBool() => Rand.Next(2) == 0 ? false : true;
         public static double GetRandomScalar() => Rand.Next(-2, 10);
