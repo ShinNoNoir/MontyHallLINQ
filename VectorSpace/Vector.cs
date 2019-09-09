@@ -115,6 +115,15 @@ namespace VectorSpace
         }
 
         /// <summary>
+        /// Scales a vector with an inverse scalar factor.
+        /// </summary>
+        /// <param name="vector">The vector to be scaled.</param>
+        /// <param name="divisor">The scalar divisor.</param>
+        /// <returns>A scaled vector.</returns>
+        public static Vector<Basis> operator /(Vector<Basis> vector, double divisor)
+            => 1 / divisor * vector;
+
+        /// <summary>
         /// Subtracts from a vector another vector.
         /// </summary>
         /// <remarks>
