@@ -248,6 +248,15 @@ namespace VectorSpace
         /// </returns>
         public Vector<B3> SelectMany<B2, B3>(Func<Basis, Vector<B2>> vectorSelector, Func<Basis, B2, B3> resultSelector)
             => SelectMany(basis => vectorSelector(basis).Select(basis2 => resultSelector(basis, basis2)));
+
+
+        /// <summary>
+        /// Filters a linear combination of basis vectors based on a predicate on the bases.
+        /// </summary>
+        /// <param name="predicate">A function to test each basis object for a condition.</param>
+        /// <returns>A <see cref="Vector{Basis}"/> that retains the linear combination of basis vectors that satisfy the condition.</returns>
+        public Vector<Basis> Where(Func<Basis, bool> predicate)
+            => SelectMany(basis => predicate(basis) ? new Vector<Basis>(basis) : Zero);
     }
 
 
