@@ -109,7 +109,9 @@ namespace VectorSpace
             var res = new Vector<Basis>();
             foreach (var basis in vector.bag.Keys)
             {
-                res[basis] = factor * vector[basis];
+                var scalar = vector[basis];
+                if (scalar != 0)
+                    res[basis] = factor * scalar;
             }
             return res;
         }
