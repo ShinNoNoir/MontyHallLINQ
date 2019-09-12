@@ -224,7 +224,7 @@ namespace VectorSpace
         public double Norm(int p = 2)
             => p >= 1
             ? Math.Pow(
-                Components.Aggregate(0.0, (acc, component) => acc + Math.Pow(component.Scalar, p)), 
+                Components.Aggregate(0.0, (acc, component) => acc + Math.Pow(Math.Abs(component.Scalar), p)), 
                 1.0 / p)
             : throw new ArgumentException("The p-norm is only defined for positive values of p");
 
