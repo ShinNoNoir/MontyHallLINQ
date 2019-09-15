@@ -7,15 +7,6 @@ namespace VectorSpace.Tests
 {
     public class NormTests
     {
-        [Theory]
-        [MemberData(nameof(GetRandomVectorData))]
-        public void Norm1Test<T>(Vector<T> v)
-        {
-            Assert.Equal(
-                v.Norm(1),
-                v.Select(_ => "norm")["norm"]
-            );
-        }
 
         [Theory]
         [MemberData(nameof(GetRandomVectorData))]
