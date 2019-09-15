@@ -229,6 +229,14 @@ namespace VectorSpace
             : throw new ArgumentException("The p-norm is only defined for positive values of p");
 
         /// <summary>
+        /// Computes a normalized version of this vector based on the <paramref name="p"/>-<see cref="Norm(int)"/>.
+        /// </summary>
+        /// <param name="p">Which norm to use for normalization.</param>
+        /// <returns>A <paramref name="p"/>-normalized version of this vector.</returns>
+        public Vector<Basis> Normalized(int p = 2)
+            => this / Norm(p);
+
+        /// <summary>
         /// Projects each basis object of this vector into a new form.
         /// </summary>
         /// <typeparam name="B2">The basis object type of the value returned by the <paramref name="selector"/>.</typeparam>
