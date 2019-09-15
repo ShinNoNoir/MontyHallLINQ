@@ -320,5 +320,25 @@ namespace VectorSpace
             }
             return res;
         }
+
+        /// <summary>
+        /// Creates a scaled basis vector.
+        /// </summary>
+        /// <typeparam name="T">The basis of the vector space.</typeparam>
+        /// <param name="scalar">The scalar vector.</param>
+        /// <param name="basis">The basis vector.</param>
+        /// <returns>A scaled basis vector.</returns>
+        public static Vector<T> Of<T>(this double scalar, T basis)
+            => new Vector<T>((scalar, basis));
+
+        /// <summary>
+        /// Creates a scaled basis vector. See <see cref="Of{T}(double, T)"/>.
+        /// </summary>
+        /// <typeparam name="T">The basis of the vector space.</typeparam>
+        /// <param name="scalar">The scalar vector.</param>
+        /// <param name="basis">The basis vector.</param>
+        /// <returns>A scaled basis vector.</returns>
+        public static Vector<T> Of<T>(this int scalar, T basis)
+            => Of((double)scalar, basis);
     }
 }
