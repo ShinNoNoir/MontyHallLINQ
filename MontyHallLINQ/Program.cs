@@ -45,7 +45,37 @@ namespace MontyHallLINQ
                   let doorContestantCouldSwithTo = doors.Without(doorPickedByContestant, doorOpenedByQuizMaster).First()
                   select doorContestantCouldSwithTo == doorWithPrize;
 
-            Console.WriteLine($"switchingStrategyWinProbability:\n\t{switchingStrategyWinProbability}");
+            Console.WriteLine($"{nameof(switchingStrategyWinProbability)}:\n\t{switchingStrategyWinProbability}");
+
+            // The above computation will result in a winning probability
+            // of 2/3 (0.667) being printed to screen.
+
+
+            // Now, some people may believe the probability of winning is 1/2,
+            // reasoning that in the end the contestant is presented with 
+            // only 2 choices:
+            //   * the door initially picked by the contestant, or
+            //   * the other remaining door.
+            //
+            // Now, if the contestant would randomly decide on the spot 
+            // whether to switch doors or stick with the door initially 
+            // picked, then indeed the probability of winning becomes 
+            // fifty-fifty:
+            var winProbabilityWhenDecidingOnTheSpot
+                = from doorWithPrize in OneOf(doors)
+                  from doorPickedByContestant in OneOf(doors)
+                  let doorsQuizMasterCouldOpen = doors.Without(doorWithPrize, doorPickedByContestant)
+                  from doorOpenedByQuizMaster in OneOf(doorsQuizMasterCouldOpen)
+                  let doorContestantCouldSwithTo = doors.Without(doorPickedByContestant, doorOpenedByQuizMaster).First()
+
+                  from contestantIsGoingToSwitch in OneOf(new List<bool> { false, true })
+                  
+                  select (contestantIsGoingToSwitch 
+                            ? doorContestantCouldSwithTo 
+                            : doorPickedByContestant
+                         ) == doorWithPrize;
+
+            Console.WriteLine($"{nameof(winProbabilityWhenDecidingOnTheSpot)}:\n\t{winProbabilityWhenDecidingOnTheSpot}");
         }
 
         /// <summary>
