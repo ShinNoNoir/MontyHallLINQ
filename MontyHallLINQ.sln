@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MontyHallLINQ", "MontyHallL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorSpace", "VectorSpace\VectorSpace.csproj", "{B46C54E6-1452-4F2F-8DB9-154AD7D2BC16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorSpace.Tests", "VectorSpace.Tests\VectorSpace.Tests.csproj", "{0EA1464C-AC75-4A3B-8353-48C908018509}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorSpace.Tests", "VectorSpace.Tests\VectorSpace.Tests.csproj", "{0EA1464C-AC75-4A3B-8353-48C908018509}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EAA3E895-E89E-4A8B-8AFA-45609AB7DDF2}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
