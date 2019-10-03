@@ -42,8 +42,8 @@ namespace MontyHallLINQ
                   from doorPickedByContestant in OneOf(doors)
                   let doorsQuizMasterCouldOpen = doors.Without(doorWithPrize, doorPickedByContestant)
                   from doorOpenedByQuizMaster in OneOf(doorsQuizMasterCouldOpen)
-                  let doorContestantCouldSwithTo = doors.Without(doorPickedByContestant, doorOpenedByQuizMaster).First()
-                  select doorContestantCouldSwithTo == doorWithPrize;
+                  let doorContestantCouldSwitchTo = doors.Without(doorPickedByContestant, doorOpenedByQuizMaster).First()
+                  select doorContestantCouldSwitchTo == doorWithPrize;
 
             Console.WriteLine($"{nameof(switchingStrategyWinProbability)}:\n\t{switchingStrategyWinProbability}");
 
@@ -66,12 +66,12 @@ namespace MontyHallLINQ
                   from doorPickedByContestant in OneOf(doors)
                   let doorsQuizMasterCouldOpen = doors.Without(doorWithPrize, doorPickedByContestant)
                   from doorOpenedByQuizMaster in OneOf(doorsQuizMasterCouldOpen)
-                  let doorContestantCouldSwithTo = doors.Without(doorPickedByContestant, doorOpenedByQuizMaster).First()
+                  let doorContestantCouldSwitchTo = doors.Without(doorPickedByContestant, doorOpenedByQuizMaster).First()
 
                   from contestantIsGoingToSwitch in OneOf(new List<bool> { false, true })
                   
                   select (contestantIsGoingToSwitch 
-                            ? doorContestantCouldSwithTo 
+                            ? doorContestantCouldSwitchTo 
                             : doorPickedByContestant
                          ) == doorWithPrize;
 

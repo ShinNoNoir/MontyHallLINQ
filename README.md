@@ -11,8 +11,8 @@ from doorWithPrize in OneOf(doors)
 from doorPickedByContestant in OneOf(doors)
 let doorsQuizMasterCouldOpen = doors.Without(doorWithPrize, doorPickedByContestant)
 from doorOpenedByQuizMaster in OneOf(doorsQuizMasterCouldOpen)
-let doorContestantCouldSwithTo = doors.Without(doorPickedByContestant, doorOpenedByQuizMaster).First()
-select doorContestantCouldSwithTo == doorWithPrize
+let doorContestantCouldSwitchTo = doors.Without(doorPickedByContestant, doorOpenedByQuizMaster).First()
+select doorContestantCouldSwitchTo == doorWithPrize
 ```
 
 
