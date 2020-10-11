@@ -70,10 +70,10 @@ namespace VectorSpace.Tests
 
 
 
-        public static IEnumerable<object[]> GetRandomVectorData()
+        public static IEnumerable<object[]> GetRandomVectorData
             => Enumerable.Range(0, 100).Select(_ => new object[] { Arbitrary.GetRandomVector() });
 
-        public static IEnumerable<object[]> GetRandomNestedNestedVectorData()
+        public static IEnumerable<object[]> GetRandomNestedNestedVectorData
             => Enumerable.Range(0, 100).Select(_ => new object[] { Arbitrary.GetRandomNestedNestedVector() });
 
     }
