@@ -22,14 +22,14 @@ namespace VectorSpace.Tests
                 Assert.True(u.GetHashCode() == v.GetHashCode(), $"{u} and {v} should have same hash code");
         }
 
-        public static IEnumerable<object[]> GetData()
-            => new List<object[]>
+        public static TheoryData<Vector<bool>, Vector<bool>> GetData
+            => new()
             {
-                new object[]{ null, null },
-                new object[]{ new Vector<bool>(), Vector<bool>.Zero},
-                new object[]{ new Vector<bool>(true), new Vector<bool>(true) },
-                new object[]{ new Vector<bool>((0, false), (1.0, true)), new Vector<bool>(true) },
-                new object[]{ new Vector<bool>((1.0, false), (0.0, true)), new Vector<bool>(false) }
+                { new Vector<bool>((1.0, false), (0.0, true)), new Vector<bool>(false) },
+                { null, null },
+                { new Vector<bool>(), Vector<bool>.Zero},
+                { new Vector<bool>(true), new Vector<bool>(true) },
+                { new Vector<bool>((0, false), (1.0, true)), new Vector<bool>(true) },
             };
     }
 }
