@@ -65,15 +65,13 @@ namespace VectorSpace.Tests
         }
 
 
-
-        public static IEnumerable<object> SampleVectors
-        { get; private set; } =
-            new List<object>
+        private static List<Vector<bool>> SampleVectors
+            => new ()
             {
-                new Vector<bool>(),
-                new Vector<bool>(false),
-                new Vector<bool>(true),
-                new Vector<bool>((1.0, false), (1.0, true))
+                new (),
+                new (false),
+                new (true),
+                new ((1.0, false), (1.0, true))
             };
 
         public static IEnumerable<object[]> GetVectorData()
